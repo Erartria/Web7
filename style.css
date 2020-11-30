@@ -73,11 +73,11 @@ input {
     color: cadetblue;
     margin-left: 100px;
 }
-.user_img {
-    border-radius: 20px;
+img {
+    border-radius: 25%;
     border: solid 2px rgba(0,0,0,0);
 }
-.user_img:hover {
+img:hover {
     border-color: blue;
     cursor: pointer;
 }
@@ -90,6 +90,13 @@ input {
     max-width: 50%;
     word-wrap: break-word;
 }
+.thumbnail {
+    margin-top: -10px;
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+    float: left;
+}
 .info {
     margin-top: -10px;
     float: right;
@@ -98,10 +105,12 @@ input {
 .message {
     background: rgba(190, 245, 116, 0.3);
     padding: 10px;
-    margin: 0 10px 10px 10px;
+    margin: 0 0 10px 10px;
     border-radius: 10px;
+    width: 70%;
 }
-
+.area {
+}
 .selected {
     background: rgba(0, 206, 209, 0.5)
 }
