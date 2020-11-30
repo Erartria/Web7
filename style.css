@@ -91,6 +91,7 @@ input {
     word-wrap: break-word;
 }
 .info {
+    margin-top: -10px;
     float: right;
     text-align: right;
 }
@@ -105,5 +106,7 @@ input {
     background: rgba(0, 206, 209, 0.5)
 }
 .remove_btn {
+    color: darkblue;
+    margin-top: -10px;
     float: right;
 }

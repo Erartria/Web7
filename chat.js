@@ -14,7 +14,7 @@ const noun = [
     'Human',
     'House',
     'Hero',
-    'Shepherd',
+    'Herdsman',
     'Warlock'
 ]
 
@@ -70,6 +70,7 @@ const sendMessage = function (message_content, user, time) {
     let s_user = document.createElement('div');
     let info = document.createElement('div')
     let full_time = document.createElement('time')
+    let send_date = document.createElement('div')
 
     info.className = 'info'
     context.className = 'context'
@@ -77,29 +78,28 @@ const sendMessage = function (message_content, user, time) {
     full_time.className = 'full_time'
     content.className = 'content'
     send_time.className = 'send_time'
+    send_date.className = 'send_date'
     s_user.className = 'user'
 
-    context.innerHTML = message_content
+    context.innerText = message_content
     full_time.dateTime = time
-    send_time.innerHTML = time.toLocaleTimeString()
-    s_user.innerHTML = user
+    send_date.innerText = time.getDate() + '.' + time.getMonth()
+    send_time.innerText =  time.getHours() + ':' + time.getMinutes()
+    s_user.innerText = user
     if (user === 'You') {
         message.style.cursor = 'pointer';
     }
-    info.append(send_time, full_time)
+    info.append(send_date, send_time, full_time)
     content.append(context, info)
     message.append(s_user, content)
     chat.append(message)
     return message
 }
-
+createChat('BOT', 'img/Gallery/Code-1.jpg')
 btn.addEventListener('click', function () {
     let f_value = field.value
     let str = f_value.replace(/\s+/g, '');
-
-    if (!document.contains(chat)) {
-        createChat('BOT', 'img/Gallery/Code-1.jpg')
-    }
+    
 
     if (str !== '') {
         sendMessage(f_value, 'You', new Date())
@@ -126,7 +126,7 @@ btn.addEventListener('click', function () {
             sendMessage('Calculated: ' + calculation , chat.firstChild.lastChild.textContent, new Date())
         else
             sendMessage(bot_text, chat.firstChild.lastChild.textContent, new Date())
-
+        location.href = '#submit'
     }
 })
 
