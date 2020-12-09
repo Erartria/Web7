@@ -35,7 +35,7 @@ const chat_header = document.createElement('div')
 const user = document.createElement('div')
 const user_img = document.createElement('img')
 const createChat = function (userName, img) {
-    user.className = 'chat_user'
+    user.className = 'chat_with'
     user_img.className = 'user_img'
     chat_header.className = 'chat_header'
     chat.className = 'chat'
@@ -50,12 +50,12 @@ const createChat = function (userName, img) {
 }
 const calculate = function (str) {
     console.log(str)
-    let regex = /^\d\d*[\+-\/\*()]/
+    let regex = /^\d*[\+-\/\*()\d]*/
     if (regex.test(str)) {
-
         try {
             return eval(str)
-        } catch {
+        }
+        catch {
             return false
         }
     }
@@ -74,7 +74,6 @@ const sendMessage = function (message_content, user,  time, img_src = 'img/Galle
     let full_time = document.createElement('time')
     let send_date = document.createElement('div')
     let thumbnail = document.createElement('img')
-
     info.className = 'info'
     context.className = 'context'
     message.className = 'message'
@@ -92,6 +91,7 @@ const sendMessage = function (message_content, user,  time, img_src = 'img/Galle
     send_time.innerText =  time.getHours() + ':' + time.getMinutes()
     s_user.innerText = user
     if (user === 'You') {
+        message.classList.add('my_message')
         message.style.cursor = 'pointer';
         message.style.marginLeft = '28%';
     }
@@ -105,8 +105,6 @@ createChat('BOT', 'img/Gallery/Code-1.jpg')
 btn.addEventListener('click', function () {
     let f_value = field.value
     let str = f_value.replace(/\s+/g, '');
-    
-
     if (str !== '') {
         sendMessage(f_value, 'You', new Date())
             .addEventListener('click', function () {
@@ -125,7 +123,9 @@ btn.addEventListener('click', function () {
                 }
             })
         let bot_text = getRandomWord(noun) + ' ' + getRandomWord(verb) + ' ' + getRandomWord(adjective) + ' ' + getRandomWord(noun).toLowerCase()
-        let calculation = calculate(chat.querySelector('.context').textContent)
+        let messages_context = chat.querySelectorAll('.context')
+        let calculation = calculate(messages_context[messages_context.length - 1].textContent)
+        /*console.log(calculation)*/
         if (calculation !== false)
             sendMessage('Calculated: ' + calculation , user.textContent, new Date(), user_img.src)
         else
