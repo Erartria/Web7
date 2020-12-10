@@ -50,14 +50,10 @@ const createChat = function (userName, img) {
 }
 const calculate = function (str) {
     console.log(str)
-    let regex = /^\d*[\+-\/\*()\d]*/
+    let regex = /^[-\d(]+[\+-\/\*()\d]*/
     if (regex.test(str)) {
-        try {
+        console.log(regex.test(str), str)
             return eval(str)
-        }
-        catch {
-            return false
-        }
     }
     return  false
 }
